@@ -5,10 +5,17 @@ import { join } from 'path';
 import { PokemonModule } from './pokemon/pokemon.module';
 import { CommonModule } from './common/common.module';
 import { SeedModule } from './seed/seed.module';
+import { ConfigModule } from '@nestjs/config';
+import { EnvConfig } from './config/app.config';
+import { JoiValidationSchema } from './config/joi.validation';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/nest-pokemon'),
+    ConfigModule.forRoot({
+      load: [EnvConfig],
+      validationSchema: JoiValidationSchema
+    }),
+    MongooseModule.forRoot(process.env.MONGODB),
     PokemonModule,
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..','public')
