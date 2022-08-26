@@ -2,6 +2,9 @@
 /dist
 /node_modules
 
+/mongo
+
+
 # Logs
 logs
 *.log
@@ -16,7 +19,7 @@ lerna-debug.log*
 
 #Env
 .env
-
+.env.prod
 # Tests
 /coverage
 /.nyc_output
